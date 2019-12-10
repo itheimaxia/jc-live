@@ -9,7 +9,7 @@ const mediaStreamContrains = {
     audio : false
 };
 
-const localVideo = document.querySelector('video');
+const localVideo = document.querySelector('video#video');
 
 // navigator.mediaDevices.enumerateDevices()
 // .then(function(devices) {
@@ -25,6 +25,7 @@ const localVideo = document.querySelector('video');
 navigator.mediaDevices.getUserMedia(mediaStreamContrains).then(
     mediaStream => {
         localVideo.srcObject = mediaStream;
+        window.stream = mediaStream
     }
 ).catch(
     error => {
