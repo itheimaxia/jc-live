@@ -7,25 +7,29 @@
     </head>
     <body>
          <div>
-                <button id="photo">截图</button>
-                <button id="download">下载图片</button>
-                <button id="record">录制</button>
-                <button id="recplay">播放</button>
-                <button id="download">下载</button>
-                <select id="filter">
-                        <option value="none">None</option>
-                        <option value="blur">blur</option>
-                        <option value="grayscale">Grayscale</option>
-                        <option value="invert">Invert</option>
-                        <option value="sepia">sepia</option>
+             <div>
+                    <button id="photo">截图</button>
+                    <button id="download">下载图片</button>
+                    <button id="record">录制</button>
+                    <p id="time">录制时间</p>
+                    <button id="recplay">播放</button>
+                    <button id="recdownload">下载</button>
+                    <select id="filter">
+                            <option value="none">None</option>
+                            <option value="blur">blur</option>
+                            <option value="grayscale">Grayscale</option>
+                            <option value="invert">Invert</option>
+                            <option value="sepia">sepia</option>
                     </select>
-                <video id="recvideo" width="320px" height="240px"></video>
-                <canvas id="picture">
-                </canvas>
+             </div>
+             <div>
+                    <video id="recvideo" width="320px" height="240px"></video>
+                    <canvas id="picture"></canvas>
+             </div>
         </div>
         <video id="video" autoplay playsinline></video>
         <script src="js/client.js"></script>
         <script src="js/picture.js"></script>
-        <script scr="js/record.js"></script>
+        <script src="js/record.js"></script>
     </body>
 </html>

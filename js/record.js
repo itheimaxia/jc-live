@@ -7,6 +7,20 @@ function handleDataAvailable(e){
         }
 }
 
+var recordtime = 0
+var interval
+function refreshRecordTime(){
+    recordtime++
+    document.querySelector("p#time").innerHTML=recordtime
+}
+function startInterval(){
+    recordtime = 0
+    interval = window.setInterval(refreshRecordTime,1000)
+}
+function clearInterval(){
+    window.clearInterval(interval)
+    document.querySelector("p#time").innerHTML='录制时间'
+}
 function startRecord(){
 
         buffer = [];
@@ -34,6 +48,7 @@ function startRecord(){
         mediaRecorder.ondataavailable = handleDataAvailable;
         //开始录制
         mediaRecorder.start(10);
+        startInterval()
 }
 
 document.querySelector("button#record").onclick = function (){
@@ -41,10 +56,26 @@ document.querySelector("button#record").onclick = function (){
 }
 
 document.querySelector("button#recplay").onclick = function (){
+    clearInterval()
+    mediaRecorder.stop()
+    mediaRecorder = null
     let recvideo = document.querySelector("video#recvideo")
     var blob = new Blob(buffer, {type: 'video/webm'});
     recvideo.src = window.URL.createObjectURL(blob);
     recvideo.srcObject = null;
     recvideo.controls = true;
     recvideo.play();
+}
+
+
+document.querySelector("button#recdownload").onclick = ()=> {
+    clearInterval()
+    var blob = new Blob(buffer, {type: 'video/webm'});
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+
+    a.href = url;
+    a.style.display = 'none';
+    a.download = 'video.webm';
+    a.click();
 }
